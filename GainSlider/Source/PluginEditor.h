@@ -14,7 +14,8 @@
 //==============================================================================
 /**
 */
-class GainSliderAudioProcessorEditor  : public juce::AudioProcessorEditor
+class GainSliderAudioProcessorEditor  : public juce::AudioProcessorEditor, 
+                                        public juce::Slider::Listener
 {
 public:
     GainSliderAudioProcessorEditor (GainSliderAudioProcessor&);
@@ -23,6 +24,9 @@ public:
     //==============================================================================
     void paint (juce::Graphics&) override;
     void resized() override;
+
+    // Define what happens when the slider listener detects a change in slider value
+    void sliderValueChanged(juce::Slider* slider) override;
 
 private:
     // This reference is provided as a quick way for your editor to

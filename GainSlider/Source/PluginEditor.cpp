@@ -13,8 +13,15 @@
 GainSliderAudioProcessorEditor::GainSliderAudioProcessorEditor (GainSliderAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
-    // Set the type of slider to knob that increases in value with a mouse drag North
+    // Make Slider visible in the plugin window. 
+    // Set Gain Control type, min/max value, and interval.
+    // This gain control will be a knob that increases by the interval with a mouse hold -> drag North
     gainSlider.setSliderStyle(juce::Slider::SliderStyle::RotaryVerticalDrag);
+    gainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 25);
+    gainSlider.setRange(-60.0f, 10.0f, 0.01f);  // Set range to proper decibels
+    gainSlider.setValue(0.0f);
+    gainSlider.addListener(this);
+    addAndMakeVisible(gainSlider);
 
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
@@ -29,15 +36,19 @@ GainSliderAudioProcessorEditor::~GainSliderAudioProcessorEditor()
 void GainSliderAudioProcessorEditor::paint (juce::Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
-
-    g.setColour (juce::Colours::white);
-    g.setFont (15.0f);
-    g.drawFittedText ("Hello World!", getLocalBounds(), juce::Justification::centred, 1);
+    g.fillAll(juce::Colours::black);
 }
 
+// Set size, and location of child components within the plugin window
 void GainSliderAudioProcessorEditor::resized()
 {
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
+    gainSlider.setBounds(getWidth()/2 - 100, getHeight()/2 - 100, 200, 200);
+}
+
+// Update processor variable to hold the current value of the slider whenever the
+// listener detects a change in slider value
+void GainSliderAudioProcessorEditor::sliderValueChanged(juce::Slider* slider) {
+    if (slider == &gainSlider) {
+        audioProcessor.gainKnobVal = gainSlider.getValue();
+    }
 }
