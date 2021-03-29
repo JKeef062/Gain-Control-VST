@@ -1,0 +1,5 @@
+# Ignore  all JUCE files that won't be edited
+/GainSlider/*
+
+# Track the plugin source files
+!/GainSlider/Source
