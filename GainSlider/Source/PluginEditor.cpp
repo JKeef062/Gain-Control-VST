@@ -18,7 +18,7 @@ GainSliderAudioProcessorEditor::GainSliderAudioProcessorEditor (GainSliderAudioP
     // This gain control will be a knob that increases by the interval with a mouse hold -> drag North
     gainSlider.setSliderStyle(juce::Slider::SliderStyle::RotaryVerticalDrag);
     gainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 25);
-    gainSlider.setRange(-60.0f, 10.0f, 0.01f);  // Set range to proper decibels
+    gainSlider.setRange(-10.0f, 10.0f, 0.01f);  // Set range to proper decibels
     gainSlider.setValue(0.0f);
     gainSlider.addListener(this);
     addAndMakeVisible(gainSlider);
