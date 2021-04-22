@@ -1,15 +1,13 @@
 /*
-  ==============================================================================
-
-    This file contains the basic framework code for a JUCE plugin processor.
-
-  ==============================================================================
+ ==============================================================================
+                   IMPLEMENTATION OF PROCESSOR FUNCTIONS
+ ==============================================================================
 */
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-//==============================================================================
+
 GainSliderAudioProcessor::GainSliderAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
      : AudioProcessor (BusesProperties()
@@ -24,15 +22,17 @@ GainSliderAudioProcessor::GainSliderAudioProcessor()
 {
 }
 
+
 GainSliderAudioProcessor::~GainSliderAudioProcessor()
 {
 }
 
-//==============================================================================
+
 const juce::String GainSliderAudioProcessor::getName() const
 {
     return JucePlugin_Name;
 }
+
 
 bool GainSliderAudioProcessor::acceptsMidi() const
 {
@@ -43,6 +43,7 @@ bool GainSliderAudioProcessor::acceptsMidi() const
    #endif
 }
 
+
 bool GainSliderAudioProcessor::producesMidi() const
 {
    #if JucePlugin_ProducesMidiOutput
@@ -51,6 +52,7 @@ bool GainSliderAudioProcessor::producesMidi() const
     return false;
    #endif
 }
+
 
 bool GainSliderAudioProcessor::isMidiEffect() const
 {
@@ -61,10 +63,12 @@ bool GainSliderAudioProcessor::isMidiEffect() const
    #endif
 }
 
+
 double GainSliderAudioProcessor::getTailLengthSeconds() const
 {
     return 0.0;
 }
+
 
 int GainSliderAudioProcessor::getNumPrograms()
 {
@@ -72,36 +76,42 @@ int GainSliderAudioProcessor::getNumPrograms()
                 // so this should be at least 1, even if you're not really implementing programs.
 }
 
+
 int GainSliderAudioProcessor::getCurrentProgram()
 {
     return 0;
 }
 
+
 void GainSliderAudioProcessor::setCurrentProgram (int index)
 {
 }
+
 
 const juce::String GainSliderAudioProcessor::getProgramName (int index)
 {
     return {};
 }
 
+
 void GainSliderAudioProcessor::changeProgramName (int index, const juce::String& newName)
 {
 }
 
-//==============================================================================
+
 void GainSliderAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
 }
 
+
 void GainSliderAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
+
 
 #ifndef JucePlugin_PreferredChannelConfigurations
 bool GainSliderAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
@@ -129,6 +139,7 @@ bool GainSliderAudioProcessor::isBusesLayoutSupported (const BusesLayout& layout
 }
 #endif
 
+
 void GainSliderAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
     juce::ScopedNoDenormals noDenormals;
@@ -151,18 +162,19 @@ void GainSliderAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, j
     }
 }
 
-//==============================================================================
+
 bool GainSliderAudioProcessor::hasEditor() const
 {
     return true; // (change this to false if you choose to not supply an editor)
 }
+
 
 juce::AudioProcessorEditor* GainSliderAudioProcessor::createEditor()
 {
     return new GainSliderAudioProcessorEditor (*this);
 }
 
-//==============================================================================
+
 void GainSliderAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
 {
     // You should use this method to store your parameters in the memory block.
@@ -170,13 +182,14 @@ void GainSliderAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
     // as intermediaries to make it easy to save and load complex data.
 }
 
+
 void GainSliderAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
 }
 
-//==============================================================================
+
 // This creates new instances of the plugin..
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
