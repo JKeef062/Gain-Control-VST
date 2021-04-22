@@ -4,12 +4,16 @@ This repo contains the source code for a basic gain control VST3 plugin written 
 <img src="https://github.com/JKeef062/Gain-Control-VST/blob/main/Imgs/PluginInReaper.PNG" width="800" height="519">
 
 ## How to Use the Plugin
-1. Download the file GainSlider/Builds/VisualStudio2019/x64/Debug/VST3/GainSlider.vst3
-2. Configure the DAW of your choosing to look for vst plugins in the location you have saved GainSlider.vst3
+1. Download the folder Plugin from this repository
+2. You can find, and run, the stand alone plugin by navigating to '<location_of_folder_download>/Plugin/Standalone Plugin/' and running GainSlider.exe
+4. If you wish to use this plugin in a DAW or other program that supports vst3s:
+   - Configure the program of your choosing to look for vst plugins in the '<location_of_folder_download>/Plugin/VST3/' directory.
+   - Load the plugin into the audio chain and enjoy!
 
 
 ## How To Update/Change the Plugin
 1. Download and install JUCE v6.0.8 or higher
 2. Create a new basic plugin and title it "GainSlider"
-3. Move, or copy the contents of, the PluginEditor.cpp, PluginEditor.h, PluginProcessor.cpp, and PluginProcessor.h files into the GainSlider/Source directory
-4. Edit these files using any method you wish. Visual Studio and Xcode are supported by JUCE and will likely be the easiest options.
+3. Move, or copy the contents of, the PluginEditor.cpp, PluginEditor.h, PluginProcessor.cpp, PluginProcessor.h, SliderLookAndFeel.h, and SliderLookAndFeel.cpp files into the GainSlider/Source directory
+4. Edit these files in any way you desire 
+   - NOTE: Visual Studio and Xcode are supported by JUCE and will likely be the easiest options for adding your own functionality.
