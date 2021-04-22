@@ -12,7 +12,7 @@ GainSliderAudioProcessorEditor::GainSliderAudioProcessorEditor (GainSliderAudioP
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
     // Initialize the background image and make it visible
-    background.setImage(juce::ImageCache::getFromMemory(BinaryData::MarbleBG_jpg, BinaryData::MarbleBG_jpgSize));
+    background.setImage(juce::ImageCache::getFromMemory(BinaryData::MarbleBG_w_Logo_png, BinaryData::MarbleBG_w_Logo_pngSize));
     background.setImagePlacement(juce::RectanglePlacement::stretchToFit);
     addAndMakeVisible(background);
 
@@ -26,12 +26,12 @@ GainSliderAudioProcessorEditor::GainSliderAudioProcessorEditor (GainSliderAudioP
     gainSlider.setSkewFactorFromMidPoint(0.0f);
     gainSlider.setValue(audioProcessor.gainKnobVal);
     gainSlider.addListener(this);
-    gainSlider.setBounds(150, 240, 200, 200);
-    addAndMakeVisible(gainSlider);    
+    gainSlider.setSize(200, 200);
+    addAndMakeVisible(gainSlider);
 
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (300, 400);
+    setSize(300, 400);
 }
 
 
@@ -57,6 +57,7 @@ void GainSliderAudioProcessorEditor::resized()
     // Adjust the gain slider to match the new size of the window
     float sliderExpansionRate = 0.5;
     int winWidth = getWidth(), winHeight = getHeight();
+
     gainSlider.setBounds(winWidth/2 - gainSlider.getWidth()/2, 
                          winHeight/2 - gainSlider.getHeight()/2 + winHeight*0.1, 
                          200 + sliderExpansionRate*(winWidth-300), 
